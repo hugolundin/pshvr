@@ -1,10 +1,10 @@
+extern crate log;
 mod pushover;
-
 use pushover::Pushover;
 
-#[tokio::main]
-async fn main() -> Result<(), reqwest::Error>{
-    let pushover = Pushover::new("", "");
-    pushover.push("hello from rust").await;
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let pushover = Pushover::from_config();
+    pushover.push("hello from rust")?;
+
     Ok(())
 }
