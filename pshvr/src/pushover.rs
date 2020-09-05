@@ -24,19 +24,19 @@ impl Pushover {
             _ => panic!("Unable to open home directory.")
         };
     
-        let config = match EnvFile::new(&home.join(".pshvr")) {
+        let config = match EnvFile::new(&home.join(".pshvrc")) {
             Ok(c) => c, 
-            _ => panic!("~/.pshvr does not exist.")
+            _ => panic!("~/.pshvrc does not exist.")
         };
     
         let user = match config.get("user") {
             Some(u) => u,
-            _ => panic!("'user' does not exist in ~/.pshvr")
+            _ => panic!("'user' does not exist in ~/.pshvrc")
         };
     
         let token = match config.get("token") {
             Some(t) => t,
-            _ => panic!("'token' does not exist in ~/.pshvr")
+            _ => panic!("'token' does not exist in ~/.pshvrc")
         };
     
         Pushover::new(user.to_string(), token.to_string())
